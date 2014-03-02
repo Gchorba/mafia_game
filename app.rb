@@ -1,6 +1,6 @@
 require 'bundler'
 Bundler.require
-require './lib/mafia'
+require './lib/game.rb'
 
 class App < Sinatra::Application
 
