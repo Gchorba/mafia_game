@@ -1,3 +1,5 @@
+
+
 # roles (role, description, sees_mafia)
 char_array = [
   ["Sheriff", "You're the sheriff. You get to find out about one person each night phase, unless you have been killed.", false],
@@ -8,3 +10,4 @@ char_array = [
   ["Peeping Tom", "You are the peeping Tom. You can open your eyes at any point during the game, but don't get caught or you'll end up dead.", false],
   ["Postman", "You are the Postman. When you are killed, you can take someone else down with you.", false]
 ]
+

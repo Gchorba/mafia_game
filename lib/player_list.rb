@@ -1,3 +1,5 @@
+
+
 player_array = [
   ["Ashley Williams", "ashley@flatironschool.com", "+19084182532", true],
   ["Blake Johnson", "blake@flatironschool.com", "+19176000414", true],
@@ -30,3 +32,4 @@ player_array = [
   ["Uzo Ukeagu", "msuzoagu.@gmail.com", "+19712226803", false],
   ["Vois Cornerstone", "vois.cornerstone@gmail.com", "+19174681347", true]
 ]
+

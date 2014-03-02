@@ -1,13 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem "sqlite3"
-gem "activerecord"
-gem "sinatra-activerecord"
-gem 'sequel'
-gem "data_mapper"
-gem "dm-sqlite-adapter"
-gem "rake"
+gem 'twilio-ruby'
 gem 'haml'
 
 group :development do 
