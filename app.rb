@@ -1,10 +1,13 @@
 require 'bundler'
 Bundler.require
-require './lib/game.rb'
-require './lib/player_list.rb'
-require './lib/mafia_list.rb'
-require './lib/character_list.rb'
-require './lib/civilian_list.rb'
+Dir.glob('./lib/*.rb') do |model|
+  require model
+end
+# require './lib/game.rb'
+# require './lib/player_list.rb'
+# require './lib/mafia_list.rb'
+# require './lib/character_list.rb'
+# require './lib/civilian_list.rb'
 require 'twilio-ruby'
 
 class App < Sinatra::Application
@@ -20,31 +23,24 @@ class App < Sinatra::Application
 
   from  = twilio_number
 
-  notifications = {
-    "+19739313192" => "body",
-    "+14782274237" => "body2"
-  }
+  possible_players = Player.new
+  players = MafiaGame.new(possible_players.playing)
+  players.player_count
+  players.mafia_roles
+  players.civilian_roles
+  players.civilians
+  role_hash = players.assign_roles_hash
 
-  notifications.each do |key, value|
+  role_hash.each do |key, value|
     twilio.account.messages.create(
       :from => from,
       :to => key,
       :body => value
       )
-    puts "Sent message to #{key}"
+    puts "Sent message to #{value}"
   end
 
-  # sms = twilio.account.sms.messages.create(:body => "All in the game, yo",
-  #   :to => "+14108675309",
-  #   :from => "+15005550006")
-  # puts sms.body
-
-  # post "/" do
-  #   twilio.account.messages.create(
-  #     :from => twilio_number,
-  #     :to => '+1',
-  #     :body => 
-  #   )
-  # end
-
 end
+
+
+
