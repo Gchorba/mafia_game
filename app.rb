@@ -3,8 +3,6 @@ Bundler.require
 Dir.glob('./lib/*.rb') do |model|
   require model
 end
-# require './lib/game.rb'
-# require './lib/player_list.rb'
 require 'twilio-ruby'
 
 class App < Sinatra::Application
