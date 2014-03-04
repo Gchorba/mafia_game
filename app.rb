@@ -25,10 +25,20 @@ class App < Sinatra::Application
   players.player_count
   players.mafia_roles
   players.non_mafia_roles
-  players.civilians
+  players.civilian_roles
   role_to_send = players.assign_roles_hash
+  mafia_to_send = players.who_is_mafia
 
   role_to_send.each do |key, value|
+    twilio.account.messages.create(
+      :from => from,
+      :to => key,
+      :body => value
+      )
+    puts "Sent message to #{key} #{value}"
+  end
+
+  mafia_to_send.each do |key, value|
     twilio.account.messages.create(
       :from => from,
       :to => key,
