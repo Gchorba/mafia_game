@@ -1,7 +1,4 @@
 # require './player_list.rb'
-# require './mafia_list.rb'
-# require './character_list.rb'
-# require './civilian_list.rb'
 
 class MafiaGame
 
@@ -23,21 +20,14 @@ class MafiaGame
   end
 
   def mafia_roles
-    mafiaroles = (@count / 4).floor
+    mafiaroles = (@count / 4).floor + 1
     mafiaroles.times do 
       ROLES << ["Mafia", "You're in the mafia.", true]
     end
+    mafiaroles
   end
 
-  def civilian_roles
-    civroles = (@count / 4).floor
-    civroles.times do 
-      ROLES << ["Person", "You're just a person. Figure out who is in the mafia and stay alive!", false]
-    end
-  end
-
-  def civilians
-    total_civilians = player_count - mafia_roles - civilian_roles
+  def non_mafia_roles
     char_array = [
       ["Sheriff", "You're the sheriff. You get to find out about one person each night phase, unless you have been killed.", false],
       ["Doctor", "You're the Doctor. During each night phase you get to choose a player to protect, unless you have been killed.", false],
@@ -47,20 +37,46 @@ class MafiaGame
       ["Peeping Tom", "You are the peeping Tom. You can open your eyes at any point during the game, but don't get caught or you'll end up dead.", false],
       ["Postman", "You are the Postman. When you are killed, you can take someone else down with you.", false]
     ]
-    char_array[0..total_civilians].each do |role| 
+    nonmafiaroles = (@count / 4).floor - 1
+    char_array[0..(nonmafiaroles)].each do |role| 
       ROLES << role
     end
+    nonmafiaroles
+  end
+
+  def civilians
+    total_civilians = @count - mafia_roles - non_mafia_roles
+    total_civilians.times do 
+      ROLES << ["Person", "You're just a person. Figure out who is in the mafia and stay alive!", false]
+    end
+    total_civilians
   end
 
   def assign_roles_hash
     @students.shuffle!
     role_hash = {}
     @students.each do |student|
-      number_to_text = student[2]
-      role_hash[number_to_text] = ROLES.pop
+      phone_numbers = student[2]
+      role_hash[phone_numbers] = ROLES.pop
     end
     role_hash
   end
 
+  # def who_is_mafia
+  #   mafia_peeps = []
+  #   role_hash
+  #   if role_hash[student] == "Mafia"
+  #     mafia_peeps << students[0]
+  #   end
+  #   mafia_peeps
+  # end
+
 end
+
+# possible_players = Player.new
+# players = MafiaGame.new(possible_players.playing)
+# puts players.player_count
+# puts players.mafia_roles
+# puts players.non_mafia_roles
+# puts players.civilians
 

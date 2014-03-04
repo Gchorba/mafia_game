@@ -5,9 +5,6 @@ Dir.glob('./lib/*.rb') do |model|
 end
 # require './lib/game.rb'
 # require './lib/player_list.rb'
-# require './lib/mafia_list.rb'
-# require './lib/character_list.rb'
-# require './lib/civilian_list.rb'
 require 'twilio-ruby'
 
 class App < Sinatra::Application
@@ -27,20 +24,18 @@ class App < Sinatra::Application
   players = MafiaGame.new(possible_players.playing)
   players.player_count
   players.mafia_roles
-  players.civilian_roles
+  players.non_mafia_roles
   players.civilians
-  role_hash = players.assign_roles_hash
+  role_to_send = players.assign_roles_hash
 
-  role_hash.each do |key, value|
+  role_to_send.each do |key, value|
     twilio.account.messages.create(
       :from => from,
       :to => key,
       :body => value
       )
-    puts "Sent message to #{value}"
+    puts "Sent message to #{key} #{value}"
   end
 
 end
-
-
 
