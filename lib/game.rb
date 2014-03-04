@@ -20,7 +20,7 @@ class MafiaGame
   end
 
   def mafia_roles
-    mafiaroles = (@count / 4).floor + 1
+    mafiaroles = (@count / 4).floor
     mafiaroles.times do 
       ROLES << ["Mafia", "You're in the mafia.", true]
     end
@@ -37,8 +37,8 @@ class MafiaGame
       ["Peeping Tom", "You are the peeping Tom. You can open your eyes at any point during the game, but don't get caught or you'll end up dead.", false],
       ["Postman", "You are the Postman. When you are killed, you can take someone else down with you.", false]
     ]
-    nonmafiaroles = (@count / 4).floor - 1
-    char_array[0..(nonmafiaroles)].each do |role| 
+    nonmafiaroles = (@count / 4).floor
+    char_array[0..(nonmafiaroles - 1)].each do |role| 
       ROLES << role
     end
     nonmafiaroles
