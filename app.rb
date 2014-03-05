@@ -6,14 +6,13 @@ end
 require 'twilio-ruby'
 
 class App < Sinatra::Application
+  
+  keys = YAML::load_file("data/config.yml")
 
-  # currently only includes test sid/token/number
-  account_sid = "AC24cbd663ebeb7a86d0219d62206409a8"
-  # ENV['TWILIO_ACCOUNT_SID']
-  auth_token = "e12190dedbe20350bafb19f062edec98"
-  # ENV['TWILIO_AUTH_TOKEN']
-  twilio_number = "+15005550006"
-  # ENV['TWILIO_NUMBER']
+  account_sid = keys['TWILIO_ACCOUNT_SID']
+  auth_token = keys['TWILIO_AUTH_TOKEN']
+  twilio_number = keys['TWILIO_NUMBER']
+
   twilio = Twilio::REST::Client.new account_sid, auth_token
 
   from  = twilio_number
@@ -33,7 +32,6 @@ class App < Sinatra::Application
       :to => key,
       :body => value
       )
-    puts "Sent message to #{key} #{value}"
   end
 
   mafia_to_send.each do |key, value|
@@ -42,7 +40,6 @@ class App < Sinatra::Application
       :to => key,
       :body => value
       )
-    puts "Sent message to #{key} #{value}"
   end
 
 end

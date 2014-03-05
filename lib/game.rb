@@ -72,7 +72,7 @@ class MafiaGame
   def who_is_mafia
     alert_hash = {}
     ALERT.each do |player|
-      alert_hash[player] = MAFIAPLAYERS
+      alert_hash[player] = MAFIAPLAYERS.join(" ")
     end
     alert_hash
   end
