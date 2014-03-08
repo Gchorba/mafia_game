@@ -8,7 +8,7 @@ class Player
     ["Ariel Isaacs", "ariel.isaacs@gmail.com", "+14154257945", true],
     ["Armando Amador", "Arm.amador@gmail.com", "+19175432702", true],
     ["Chris Haack", "chris.haack@me.com", "+13126360711", true],
-    ["David Gabeau", "djg400@nyu.edu", "+12405933853", true],
+    ["David Gabeau", "djg400@nyu.edu", "+13477665210", true],
     ["Derek Silverman", "dereksilverman@gmail.com", "+19417371525", true],
     ["Felicia O'Garro", "felicia.ogarro@gmail.com", "+13474500396", true],
     ["Gustavo Guimaraes", "gustavoguimaraes@gmail.com", "+19207502147", true],
