@@ -44,4 +44,3 @@ class Player
   end
 
 end
-
